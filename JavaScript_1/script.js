@@ -1,0 +1,14 @@
+document.getElementById('contact-form').addEventListener('submit', function(event){
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    emailjs.send('service_id', 'template_id', formData)
+    .then(response => {
+        document.getElementById('response-message').innerText = 'Mensagem enviada com sucesso!';
+        this.reset();
+    })
+    .catch(error => {
+        document.getElementById('response-message').innerText = 'Erro ao enviar a mensagem';
+        console.error('Erro ao enviar o email', error);
+    });
+});
